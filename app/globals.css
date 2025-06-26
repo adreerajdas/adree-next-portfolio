@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: #0a0a0a !important;
+  color: #fff !important;
+}
+
+body.light {
+  background: #fff !important;
+  color: #171717 !important;
+}
+
+.fh5co-cover, #fh5co-header {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+}
+
+.profile-thumb {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+}
+
+body.dark #fh5co-features,
+body.dark #fh5co-features h2,
+body.dark #fh5co-features .feature-left h3,
+body.dark #fh5co-features .feature-left p,
+body.dark #fh5co-header .display-tc h1,
+body.dark #fh5co-header .display-tc h2,
+body.dark #fh5co-header .display-tc h3,
+body.dark #fh5co-header .display-tc .fh5co-social-icons li a,
+body.dark #fh5co-header .display-tc .fh5co-social-icons li a i,
+body.dark .fh5co-cover .display-tc h1,
+body.dark .fh5co-cover .display-tc h2,
+body.dark .fh5co-cover .display-tc h3,
+body.dark .fh5co-cover .display-tc .fh5co-social-icons li a,
+body.dark .fh5co-cover .display-tc .fh5co-social-icons li a i {
+  color: #fff !important;
+}
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark .fh5co-heading h2,
+body.dark .fh5co-heading p,
+body.dark label,
+body.dark .first-block,
+body.dark .second-block,
+body.dark p,
+body.dark li,
+body.dark span,
+body.dark .timeline-title,
+body.dark .company,
+body.dark .progress-wrap h3,
+body.dark .feature-copy h3,
+body.dark .feature-copy p,
+body.dark .blog-text,
+body.dark .blog-text h3,
+body.dark .blog-text p,
+body.dark .blog-text span,
+body.dark .desc,
+body.dark .desc h3,
+body.dark .desc span {
+  color: #fff !important;
+}
+
+body.dark .info li .second-block {
+  color: #bbb !important;
+}
+
+body.dark .fh5co-social-icons li a {
+  color: #fff !important;
+}
+
+body.dark .fh5co-social-icons li a i {
+  color: #fff !important;
+}
+
+body.dark .fh5co-bg-dark {
+  background: #181818 !important;
+}
+
+body.dark .fh5co-cover .overlay,
+body.dark #fh5co-header .overlay {
+  background: #2229 !important;
+}
+
+body.dark .feature-left .icon {
+  background: #333 !important;
+}
+
+body.dark .feature-left .icon i {
+  color: #fff !important;
+}
+
+body.dark .progress-bar {
+  background: #9900ff !important;
+}
+
+body.dark input,
+body.dark textarea {
+  background: #222 !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+
+body.dark .btn,
+body.dark .btn-primary {
+  background: #9900ff !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+body.dark #fh5co-features .feature-left .icon {
+  background: #222 !important;
+}
+
+body.dark #fh5co-features .feature-left .icon i {
+  color: #fff !important;
+}
+
+body.dark #fh5co-features {
+  background: #222 !important;
+}
+
+body.dark #fh5co-about,
+body.dark #fh5co-resume,
+body.dark #fh5co-skills,
+body.dark #fh5co-started,
+body.dark #fh5co-work,
+body.dark #fh5co-blog,
+body.dark #fh5co-pricing,
+body.dark #fh5co-contact {
+  background: #181818 !important;
+  color: #fff !important;
+}
+
+body.dark .info .first-block,
+body.dark .info .second-block,
+body.dark .info,
+body.dark .col-md-4 ul.info li,
+body.dark .col-md-4 ul.info li span {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+body.dark .info .first-block {
+  font-weight: bold;
+}
+
+body.dark .col-md-4 ul.info li span.second-block {
+  font-weight: normal;
+}

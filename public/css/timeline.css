@@ -1,0 +1,83 @@
+/* Timeline styles for education page */
+.timeline {
+  position: relative;
+  padding: 20px 0 20px 0;
+  list-style: none;
+}
+.timeline:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #e9e9e9;
+  margin-left: -1px;
+}
+.timeline > li {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 50px;
+}
+.timeline > li .timeline-badge {
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4em;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -25px;
+  background: #9900ff;
+  border-radius: 50%;
+  z-index: 100;
+  box-shadow: 0 0 0 4px #fff;
+}
+.timeline > li .timeline-panel {
+  position: relative;
+  width: 46%;
+  float: left;
+  left: 0;
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.timeline > li.timeline-inverted .timeline-panel {
+  float: right;
+  right: 0;
+  left: auto;
+}
+.timeline-title {
+  margin-top: 0;
+  color: #9900ff;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.timeline-body {
+  margin-top: 10px;
+  color: #444;
+}
+.timeline .company {
+  font-size: 0.95em;
+  color: #888;
+  font-style: italic;
+}
+@media (max-width: 991px) {
+  .timeline:before {
+    left: 20px;
+  }
+  .timeline > li .timeline-panel,
+  .timeline > li.timeline-inverted .timeline-panel {
+    width: 90%;
+    float: none;
+    left: 40px;
+    right: auto;
+  }
+  .timeline > li .timeline-badge {
+    left: 0;
+    margin-left: 0;
+  }
+}

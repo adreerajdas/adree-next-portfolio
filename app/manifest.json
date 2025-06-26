@@ -1,0 +1,9 @@
+{
+  "name": "Adreeraj Das Portfolio",
+  "short_name": "Adree Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#9900ff",
+  "description": "Portfolio website for Adreeraj Das"
+}
