@@ -124,7 +124,7 @@ function Navbar() {
         transition: "background 0.3s, box-shadow 0.3s, border-bottom 0.3s"
       }}
     >
-      <span style={{ fontWeight: 700, fontSize: 22, letterSpacing: 1, color: theme === 'dark' ? '#fff' : '#9900ff' }}>
+      <span style={{ fontWeight: 700, fontSize: 22, letterSpacing: 1, color: theme === 'dark' ? '#fff' : '#9900ff', fontFamily: 'Space Mono, monospace' }}>
         Adreeraj Das
       </span>
       <button
@@ -256,11 +256,11 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <div style={{ display: 'flex', minHeight: '100vh', background: theme === 'dark' ? '#111' : '#f9f9f9' }}>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }}>
+      <div className="contact-responsive-container" style={{ display: 'flex', minHeight: '100vh', background: theme === 'dark' ? '#111' : '#f9f9f9' }}>
+        <div className="contact-image-col" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }}>
           <img src="/images/contact-photo.jpg" alt="Contact" style={{ maxWidth: '100%', maxHeight: '80vh', borderRadius: 16, boxShadow: '0 4px 32px rgba(0,0,0,0.25)' }} />
         </div>
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }}>
+        <div className="contact-form-col" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }}>
           {status === 'success' ? (
             <div style={{ width: '100%', maxWidth: 420, background: formBg, padding: 32, borderRadius: 16, boxShadow: '0 2px 16px rgba(0,0,0,0.18)', textAlign: 'center' }}>
               <h2 style={{ color: textColor, fontFamily: 'Space Mono, monospace', marginBottom: 24 }}>Thank you!</h2>
@@ -344,18 +344,93 @@ export default function ContactPage() {
                   cursor: 'pointer'
                 }}
                 disabled={status === 'sending'}
-                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.02)'
-                }
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.02)'}
                 onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'
                 }
               >
                 {status === 'sending' ? 'Sending...' : 'Send Message'}
               </button>
+              {/* Review Website Button */}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfLg_d8-IUvTkWJ4L4pMRaIoM-HuNsAelBnkQzll8Go_vDKBw/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'block',
+                  margin: '16px auto 0 auto',
+                  padding: '6px 18px',
+                  borderRadius: 5,
+                  background: 'linear-gradient(90deg, #5f2eea 0%, #9900ff 100%)',
+                  color: '#fff',
+                  fontWeight: 600,
+                  fontSize: 14,
+                  letterSpacing: 0.5,
+                  textAlign: 'center',
+                  textDecoration: 'none',
+                  boxShadow: '0 2px 8px rgba(95,46,234,0.13)',
+                  transition: 'background 0.2s, transform 0.2s',
+                  cursor: 'pointer',
+                  minWidth: 90,
+                  maxWidth: 180
+                }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'
+                }
+              >
+                Review Website
+              </a>
               {status === 'error' && <p style={{ color: 'red', marginTop: 12 }}>Something went wrong. Please try again.</p>}
             </form>
           )}
         </div>
       </div>
+      {/* Google Fonts */}
+      <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
+      <style jsx>{`
+        .contact-responsive-container {
+          display: flex;
+          flex-direction: row;
+          min-height: 100vh;
+        }
+        .contact-image-col, .contact-form-col {
+          flex: 1 1 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+        }
+        @media (max-width: 900px) {
+          .contact-responsive-container {
+            flex-direction: column;
+            padding: 0 8px;
+          }
+          .contact-image-col, .contact-form-col {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          .contact-image-col {
+            margin-bottom: 24px;
+            justify-content: center;
+          }
+          .contact-form-col {
+            justify-content: center;
+          }
+        }
+        @media (max-width: 600px) {
+          .contact-responsive-container {
+            padding: 0 2px;
+          }
+          .contact-form-col form, .contact-form-col > div {
+            padding: 16px !important;
+            max-width: 100vw !important;
+          }
+          .contact-form-col h2 {
+            font-size: 1.2rem;
+          }
+        }
+      `}</style>
     </>
   );
 }

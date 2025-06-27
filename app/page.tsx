@@ -246,11 +246,25 @@ export default function Home() {
                   <div className="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
                     <div className="profile-thumb" style={{ background: 'url(/images/user-3.jpg)' }}></div>
                     <h1><span>Adreeraj Das</span></h1>
-                    <h3><span>Full Stack Developer</span></h3>
-                    <ul className="fh5co-social-icons">
-                      <li><a href="https://www.instagram.com/addreeraj/"><i className="icon-instagram"></i></a></li>
-                      <li><a href="https://www.facebook.com/share/gR4Nx3AEhzXd9sHt/?mibextid=qi2Omg"><i className="icon-facebook2"></i></a></li>
-                      <li><a href="https://www.linkedin.com/in/adreerajdas"><i className="icon-linkedin2"></i></a></li>
+                    <h3 style={{ letterSpacing: '0.05em', marginBottom: 12 }}><span>Full Stack Developer</span></h3>
+                    <ul className="fh5co-social-icons" style={{ gap: 12, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 8 }}>
+                      <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
+                        <a href="https://www.instagram.com/addreeraj/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                          <i className="icon-instagram" style={{ fontSize: 28, color: '#fff' }}></i>
+                        </a>
+                      </li>
+                      <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
+                        <a href="https://github.com/adreerajdas" aria-label="GitHub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', color: '#fff' }}>
+                            <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.48 2.87 8.28 6.84 9.63.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" fill="currentColor" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
+                        <a href="https://www.linkedin.com/in/adreerajdas" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                          <i className="icon-linkedin2" style={{ fontSize: 28, color: '#fff' }}></i>
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -258,7 +272,8 @@ export default function Home() {
             </div>
           </div>
         </header>
-        <div id="fh5co-about" className="animate-box">
+        {/* About Me section - white in light mode */}
+        <div id="fh5co-about" className="animate-box" style={{ background: theme === 'dark' ? '#181818' : '#fff', paddingTop: 32, paddingBottom: 24 }}>
           <div className="container">
             <div className="row">
               <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -296,9 +311,23 @@ export default function Home() {
                 <p>I have also worked on IoT-based projects, focusing on practical, real-world applications in areas like safety and automation.</p>
                 <p>As the Design Lead and Admin of InnovateX, a tech community of 500+ developers, I lead creative initiatives and mentor aspiring technologists.</p>
                 <ul className="fh5co-social-icons">
-                  <li><a href="https://www.instagram.com/addreeraj/"><i className="icon-instagram"></i></a></li>
-                  <li><a href="https://www.facebook.com/share/gR4Nx3AEhzXd9sHt/?mibextid=qi2Omg"><i className="icon-facebook3"></i></a></li>
-                  <li><a href="https://www.linkedin.com/in/adreerajdas"><i className="icon-linkedin2"></i></a></li>
+                  <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
+                    <a href="https://www.instagram.com/addreeraj/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                      <i className="icon-instagram" style={{ fontSize: 28, color: '#fff' }}></i>
+                    </a>
+                  </li>
+                  <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
+                    <a href="https://github.com/adreerajdas" aria-label="GitHub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', color: '#fff' }}>
+                        <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.48 2.87 8.28 6.84 9.63.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" fill="currentColor" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
+                    <a href="https://www.linkedin.com/in/adreerajdas" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+                      <i className="icon-linkedin2" style={{ fontSize: 28, color: '#fff' }}></i>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -320,7 +349,11 @@ export default function Home() {
                 background: none;
               }
               .fh5co-social-icons {
-                margin-top: 12px;
+                margin-top: 8px;
+                gap: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
               .fh5co-cover .fh5co-social-icons {
                 margin-top: 20px;
@@ -356,7 +389,8 @@ export default function Home() {
             `}</style>
           </div>
         </div>
-        <div id="fh5co-resume" className="fh5co-bg-color" style={{ paddingTop: 0 }}>
+        {/* Top Projects section - purple in light mode */}
+        <div id="fh5co-resume" className="fh5co-bg-color" style={{ background: theme === 'dark' ? '#222' : '#a51cff', paddingTop: 0 }}>
           <div className="container">
             <div className="row animate-box">
               <div className="col-md-8 col-md-offset-2 text-center fh5co-heading" style={{ marginBottom: 0 }}>
@@ -365,11 +399,11 @@ export default function Home() {
             </div>
             <div className="row">
               <div className="col-md-12 col-md-offset-0">
-                <ul className="timeline">
+                <ul className="timeline" style={{ color: '#fff' }}>
                   <li className="timeline-heading text-center animate-box">
                     <div style={{
-                      background: 'var(--timeline-label-bg, #fff)',
-                      color: 'var(--timeline-label-color, #222)',
+                      background: theme === 'dark' ? '#222' : '#a51cff',
+                      color: '#fff',
                       borderRadius: 8,
                       padding: '8px 24px',
                       display: 'inline-block',
@@ -382,16 +416,16 @@ export default function Home() {
                     </div>
                   </li>
                   <li className="animate-box timeline-unverted">
-                    <div className="timeline-badge"><i className="icon-suitcase"></i></div>
-                    <div className="timeline-panel">
+                    <div className="timeline-badge"><i className="icon-suitcase" style={{ color: '#fff' }}></i></div>
+                    <div className="timeline-panel" style={{ color: '#fff' }}>
                       <div className="timeline-heading">
-                        <h3 className="timeline-title">SecureStorage</h3>
-                        <span className="company">Mar 2025 – Apr 2025</span><br />
-                        <span className="company">Technique Polytechnic Institute</span>
+                        <h3 className="timeline-title" style={{ color: '#fff' }}>SecureStorage</h3>
+                        <span className="company" style={{ color: '#fff' }}>Mar 2025 – Apr 2025</span><br />
+                        <span className="company" style={{ color: '#fff' }}>Technique Polytechnic Institute</span>
                       </div>
                       <div className="timeline-body">
-                        <p>A web-based password manager developed as part of a Software Engineering minor project. It features secure user registration/login, Java-based encryption for password storage with notes, and a clean, responsive UI.</p>
-                        <p><strong>Tech Stack:</strong> Java · Python · React.js · HTML · CSS · JavaScript · MySQL</p>
+                        <p style={{ color: '#fff' }}>A web-based password manager developed as part of a Software Engineering minor project. It features secure user registration/login, Java-based encryption for password storage with notes, and a clean, responsive UI.</p>
+                        <p style={{ color: '#fff' }}><strong>Tech Stack:</strong> Java · Python · React.js · HTML · CSS · JavaScript · MySQL</p>
                         <a
                           href="https://www.linkedin.com/in/adreerajdas/details/projects/"
                           target="_blank"
@@ -418,16 +452,16 @@ export default function Home() {
                     </div>
                   </li>
                   <li className="timeline-inverted animate-box">
-                    <div className="timeline-badge"><i className="icon-suitcase"></i></div>
-                    <div className="timeline-panel">
+                    <div className="timeline-badge"><i className="icon-suitcase" style={{ color: '#fff' }}></i></div>
+                    <div className="timeline-panel" style={{ color: '#fff' }}>
                       <div className="timeline-heading">
-                        <h3 className="timeline-title">Writing Wizard</h3>
-                        <span className="company">Aug 2024 – Sep 2024</span><br />
-                        <span className="company">Technique Polytechnic Institute</span>
+                        <h3 className="timeline-title" style={{ color: '#fff' }}>Writing Wizard</h3>
+                        <span className="company" style={{ color: '#fff' }}>Aug 2024 – Sep 2024</span><br />
+                        <span className="company" style={{ color: '#fff' }}>Technique Polytechnic Institute</span>
                       </div>
                       <div className="timeline-body">
-                        <p>A compact 2D CNC writing machine (100×150mm) for engraving text and patterns. Features smooth X-Y motion, uses Universal G-code Sender, and is compatible with Arduino IDE, Inkscape, and UGS. Ideal for DIY and educational projects.</p>
-                        <p><strong>Skills:</strong> Electronics · C/C++ · Machine Design · Arduino · Machining</p>
+                        <p style={{ color: '#fff' }}>A compact 2D CNC writing machine (100×150mm) for engraving text and patterns. Features smooth X-Y motion, uses Universal G-code Sender, and is compatible with Arduino IDE, Inkscape, and UGS. Ideal for DIY and educational projects.</p>
+                        <p style={{ color: '#fff' }}><strong>Skills:</strong> Electronics · C/C++ · Machine Design · Arduino · Machining</p>
                         <a
                           href="https://www.linkedin.com/in/adreerajdas/details/projects/"
                           target="_blank"
@@ -459,45 +493,46 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div id="fh5co-features" className="animate-box">
+        {/* My Services section - white in light mode */}
+        <div id="fh5co-features" className="animate-box" style={{ background: theme === 'dark' ? '#181818' : '#fff', paddingTop: 24, paddingBottom: 24 }}>
           <div className="container">
             <div className="services-padding">
               <div className="row">
                 <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                  <h2>My Services</h2>
+                  <h2 style={{ color: theme === 'dark' ? '#fff' : '#a51cff' }}>My Services</h2>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-4 text-center">
                   <div className="feature-left">
                     <span className="icon">
-                      <i className="icon-image"></i>
+                      <i className="icon-image" style={{ color: theme === 'dark' ? '#fff' : '#a51cff' }}></i>
                     </span>
                     <div className="feature-copy">
-                      <h3>Graphic Design</h3>
-                      <p>Creative designs for digital and print media, tailored to your brand.</p>
+                      <h3 style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Graphic Design</h3>
+                      <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Creative designs for digital and print media, tailored to your brand.</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-4 text-center">
                   <div className="feature-left">
                     <span className="icon">
-                      <i className="icon-laptop"></i>
+                      <i className="icon-laptop" style={{ color: theme === 'dark' ? '#fff' : '#a51cff' }}></i>
                     </span>
                     <div className="feature-copy">
-                      <h3>Full Stack Development</h3>
-                      <p>Modern, responsive websites and web apps from start to finish.</p>
+                      <h3 style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Full Stack Development</h3>
+                      <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Modern, responsive websites and web apps from start to finish.</p>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-4 text-center">
                   <div className="feature-left">
                     <span className="icon">
-                      <i className="icon-film"></i>
+                      <i className="icon-film" style={{ color: theme === 'dark' ? '#fff' : '#a51cff' }}></i>
                     </span>
                     <div className="feature-copy">
-                      <h3>Video Editing</h3>
-                      <p>Engaging video content and social media reels for your brand.</p>
+                      <h3 style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Video Editing</h3>
+                      <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Engaging video content and social media reels for your brand.</p>
                     </div>
                   </div>
                 </div>
@@ -505,11 +540,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div id="fh5co-skills" className="animate-box">
+        {/* Skills section - purple in light mode */}
+        <div id="fh5co-skills" className="animate-box" style={{ background: theme === 'dark' ? '#222' : '#a51cff', paddingTop: 24, paddingBottom: 24 }}>
           <div className="container">
             <div className="row">
-              <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2>Skills</h2>
+              <div className="col-md-8 col-md-offset-2 text-center fh5co-heading" style={{ marginBottom: 12 }}>
+                <h2 style={{ color: theme === 'dark' ? '#fff' : '#fff' }}>Skills</h2>
               </div>
             </div>
             <div className="row">
@@ -556,13 +592,28 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div id="fh5co-started" className="fh5co-bg-dark">
+        {/* Hire Me section - white in light mode */}
+        <div id="fh5co-started" className="fh5co-bg-dark" style={{ background: theme === 'dark' ? '#181818' : '#fff', paddingTop: 24, paddingBottom: 24 }}>
           <div className="overlay"></div>
           <div className="container">
             <div className="row animate-box">
               <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2>Hire Me! OR Work With Me</h2>
-                <p>Versatile developer skilled in HTML, CSS, JavaScript, PHP, React.js, and C++, complemented by expertise in Adobe Photoshop and Premiere Pro, ready to bring creative and technical excellence to your projects.</p>
+                <h2
+                  style={{
+                    color: theme === 'dark' ? '#a51cff' : '#222',
+                    fontFamily: 'Space Mono, monospace',
+                    fontWeight: 400,
+                    fontSize: '2.5rem',
+                    letterSpacing: '2px',
+                    textAlign: 'center',
+                    marginBottom: '32px',
+                    marginTop: '0',
+                    lineHeight: 1.2
+                  }}
+                >
+                  Hire Me! OR Work With Me
+                </h2>
+                <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Versatile developer skilled in HTML, CSS, JavaScript, PHP, React.js, and C++, complemented by expertise in Adobe Photoshop and Premiere Pro, ready to bring creative and technical excellence to your projects.</p>
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
                   <a href="/contact" className="btn btn-default btn-lg">Contact Me</a>
                   <a href="/resume/adreeraj-cv.pdf" className="btn btn-default btn-lg" download>Download CV</a>
@@ -571,11 +622,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div id="fh5co-footer">
+        {/* Thank You section - purple in light mode */}
+        <div id="fh5co-footer" style={{ background: theme === 'dark' ? '#222' : '#a51cff', paddingTop: 16, paddingBottom: 8 }}>
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <p>&copy; THANK YOU 2024. All Rights Reserved. <br />Designed by ADREE <a href="https://www.instagram.com/addreeraj/" target="_blank" rel="noopener noreferrer">FOLLOW</a></p>
+                <p style={{ marginBottom: 0, color: '#fff' }}>
+                  &copy; THANK YOU 2024. All Rights Reserved. <br />
+                  Designed by ADREE <a href="https://www.instagram.com/addreeraj/" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline' }}>FOLLOW</a>
+                  <br />
+                  <span style={{ fontSize: '1.60rem', color: '#fff', fontWeight: 500 }}>Version 1.2 &nbsp;|&nbsp; Last updated: June 25, 2025</span>
+                </p>
               </div>
             </div>
           </div>
@@ -583,7 +640,6 @@ export default function Home() {
         <div className="gototop js-top">
           <a href="#" className="js-gotop"><i className="icon-arrow-up22"></i></a>
         </div>
-        {/* ...rest of the HTML content from index.html goes here, converted to JSX... */}
       </div>
 
       {/* JS Files at the end of body */}
@@ -593,7 +649,6 @@ export default function Home() {
       <Script src="/js/jquery.waypoints.min.js" strategy="afterInteractive" />
       <Script src="/js/jquery.stellar.min.js" strategy="afterInteractive" />
       <Script src="/js/jquery.easypiechart.min.js" strategy="afterInteractive" />
-      {/* <Script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false" strategy="afterInteractive" /> removed to fix 'Cannot read properties of undefined (reading 'maps')' error */}
       <Script src="/js/main.js" strategy="afterInteractive" />
     </>
   );
