@@ -58,12 +58,13 @@ export default function AboutPage() {
   return (
     <main>
       <Navbar />
-      <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" />
-      <link rel="stylesheet" href="/css/animate.css" />
-      <link rel="stylesheet" href="/css/icomoon.css" />
-      <link rel="stylesheet" href="/css/bootstrap.css" />
-      <link rel="stylesheet" href="/css/style.css" />
+      <link href="https://fonts.googleapis.com/css?family=Space+Mono&display=optional" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=optional" rel="stylesheet" />
+      {/* Remove manual CSS includes for Next.js best practices */}
+      {/* <link rel="stylesheet" href="/css/animate.css" /> */}
+      {/* <link rel="stylesheet" href="/css/icomoon.css" /> */}
+      {/* <link rel="stylesheet" href="/css/bootstrap.css" /> */}
+      {/* <link rel="stylesheet" href="/css/style.css" /> */}
       <div id="fh5co-about" className="animate-box">
         <div className="container">
           <div className="row">
@@ -82,8 +83,8 @@ export default function AboutPage() {
             </div>
             <div className="col-md-8">
               <h2>Hello There!</h2>
-              <p>I'm Adree, a dedicated web developer with a passion for creating dynamic and user-friendly websites. I specialize in both frontend and backend development</p>
-              <p>Ensuring a seamless and engaging experience for users. With proficiency in HTML, CSS, JavaScript, and various backend technologies, I strive to bring innovative ideas to life through code. Whether it's designing visually appealing interfaces or developing robust server-side applications, I am committed to delivering high-quality solutions that meet the unique needs of each project. Let's connect and build something amazing together!</p>
+              <p>I&apos;m Adree, a dedicated web developer with a passion for creating dynamic and user-friendly websites. I specialize in both frontend and backend development</p>
+              <p>Ensuring a seamless and engaging experience for users. With proficiency in HTML, CSS, JavaScript, and various backend technologies, I strive to bring innovative ideas to life through code. Whether it&apos;s designing visually appealing interfaces or developing robust server-side applications, I am committed to delivering high-quality solutions that meet the unique needs of each project. Let&apos;s connect and build something amazing together!</p>
               <ul className="fh5co-social-icons">
                 <li><a href="https://www.instagram.com/addreeraj/"><i className="icon-instagram"></i></a></li>
                 <li><a href="https://www.facebook.com/share/gR4Nx3AEhzXd9sHt/?mibextid=qi2Omg"><i className="icon-facebook3"></i></a></li>

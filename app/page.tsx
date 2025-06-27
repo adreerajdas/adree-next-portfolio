@@ -631,7 +631,7 @@ export default function Home() {
                   &copy; THANK YOU 2024. All Rights Reserved. <br />
                   Designed by ADREE <a href="https://www.instagram.com/addreeraj/" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline' }}>FOLLOW</a>
                   <br />
-                  <span style={{ fontSize: '1.60rem', color: '#fff', fontWeight: 500 }}>Version 1.2 &nbsp;|&nbsp; Last updated: June 25, 2025</span>
+                  <span style={{ fontSize: '1.80rem', color: '#fff', fontWeight: 500 }}>Version 1.2 &nbsp;|&nbsp; Last updated: June 25, 2025</span>
                 </p>
               </div>
             </div>
