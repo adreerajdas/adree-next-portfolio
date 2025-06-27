@@ -1,6 +1,5 @@
 "use client";
 
-import Script from "next/script";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -39,7 +38,7 @@ function Navbar() {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="/">My Portfolio</a>
+          <Link className="navbar-brand" href="/">My Portfolio</Link>
         </div>
         <div className="collapse navbar-collapse" id="navbar-collapse">
           <ul className="nav navbar-nav">
@@ -65,7 +64,6 @@ export default function AboutPage() {
       <link rel="stylesheet" href="/css/icomoon.css" />
       <link rel="stylesheet" href="/css/bootstrap.css" />
       <link rel="stylesheet" href="/css/style.css" />
-      <Script src="/js/modernizr-2.6.2.min.js" strategy="beforeInteractive" />
       <div id="fh5co-about" className="animate-box">
         <div className="container">
           <div className="row">
