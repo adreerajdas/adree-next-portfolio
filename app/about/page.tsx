@@ -164,7 +164,7 @@ export default function AboutPage() {
 
           <div className="bio-section">
             <h2>Hello There!</h2>
-            <p>I'm a Full Stack Developer with a passion for building responsive websites and applications that offer seamless functionality and user experience. I specialize in UI/UX design and professional video editing, combining creativity with technical skills to craft meaningful digital solutions.</p>
+            <p>I&apos;m a Full Stack Developer with a passion for building responsive websites and applications that offer seamless functionality and user experience. I specialize in UI/UX design and professional video editing, combining creativity with technical skills to craft meaningful digital solutions.</p>
             
             <p>Currently pursuing a Diploma in Computer Science & Technology at Technique Polytechnic Institute, I maintain a GPA of 8.3 and consistently explore new technologies through hands-on projects.</p>
             
