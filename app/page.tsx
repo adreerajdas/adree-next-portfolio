@@ -253,10 +253,10 @@ export default function Home() {
               </div>
               <div className="about-text-col">
                 <h2>Hello There!</h2>
-                <p>I'm a Full Stack Developer with a passion for building responsive websites and applications that offer seamless functionality and user experience. I specialize in UI/UX design and professional video editing, combining creativity with technical skills to craft meaningful digital solutions.</p>
-                <p>Currently pursuing a Diploma in Computer Science & Technology at Technique Polytechnic Institute, I maintain a GPA of 8.3 and consistently explore new technologies through hands-on projects.</p>
-                <p>I have also worked on IoT-based projects, focusing on practical, real-world applications in areas like safety and automation.</p>
-                <p>As the Design Lead and Admin of InnovateX, a tech community of 500+ developers, I lead creative initiatives and mentor aspiring technologists.</p>
+                <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>I&#39;m a Full Stack Developer with a passion for building responsive websites and applications that offer seamless functionality and user experience. I specialize in UI/UX design and professional video editing, combining creativity with technical skills to craft meaningful digital solutions.</p>
+                <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Currently pursuing a Diploma in Computer Science &amp; Technology at Technique Polytechnic Institute, I maintain a GPA of 8.3 and consistently explore new technologies through hands-on projects.</p>
+                <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>I have also worked on IoT-based projects, focusing on practical, real-world applications in areas like safety and automation.</p>
+                <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>As the Design Lead and Admin of InnovateX, a tech community of 500+ developers, I lead creative initiatives and mentor aspiring technologists.</p>
               </div>
             </div>
             <style jsx>{`
@@ -520,7 +520,7 @@ export default function Home() {
                     background: theme === 'dark' ? '#9900ff' : '#a51cff',
                     borderRadius: '2px'
                   }}></span>
-                  Let's Collaborate
+                  Let&#39;s Collaborate
                 </h2>
                 
                 <p style={{ 
@@ -532,9 +532,9 @@ export default function Home() {
                   marginLeft: 'auto',
                   marginRight: 'auto'
                 }}>
-                  I'm currently available for freelance work and full-time opportunities. 
+                  I&#39;m currently available for freelance work and full-time opportunities. 
                   Whether you have a project in mind or just want to chat about potential 
-                  collaborations, I'd love to hear from you.
+                  collaborations, I&#39;d love to hear from you.
                 </p>
                 
                 <div style={{ 
