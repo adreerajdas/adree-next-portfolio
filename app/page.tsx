@@ -1,21 +1,18 @@
 "use client";
-
 import Script from "next/script";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
 function ThemeToggle() {
-  const [theme, setTheme] = useState<string>("light");
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    // Check for saved theme in localStorage
     const saved = typeof window !== "undefined" ? localStorage.getItem("theme") : null;
     if (saved) {
       setTheme(saved);
       document.body.classList.remove("light", "dark");
       document.body.classList.add(saved);
     } else {
-      // Default to system preference
       const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
       setTheme(prefersDark ? "dark" : "light");
       document.body.classList.add(prefersDark ? "dark" : "light");
@@ -46,17 +43,25 @@ function ThemeToggle() {
         alignItems: "center",
         justifyContent: "center",
         boxShadow: theme === "dark" ? "0 2px 8px rgba(0,0,0,0.32)" : "0 2px 8px rgba(0,0,0,0.08)",
-        transition: "background 0.2s, border 0.2s, box-shadow 0.2s"
+        transition: "all 0.2s"
       }}
-      onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.18)')}
-      onMouseLeave={e => (e.currentTarget.style.boxShadow = theme === "dark" ? "0 2px 8px rgba(0,0,0,0.32)" : "0 2px 8px rgba(0,0,0,0.08)")}
     >
       {theme === "dark" ? (
-        // Sun icon
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD600" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD600" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
       ) : (
-        // Moon icon
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+        </svg>
       )}
     </button>
   );
@@ -70,7 +75,6 @@ function Navbar() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
-    // Listen for theme changes
     const updateTheme = () => {
       const t = document.body.classList.contains('dark') ? 'dark' : 'light';
       setTheme(t);
@@ -86,10 +90,7 @@ function Navbar() {
     };
   }, []);
 
-  // Close menu on navigation (for accessibility)
   const handleNavClick = () => setMenuOpen(false);
-
-  // Dynamic background for dark/light mode
   const background = scrolled
     ? (theme === 'dark' ? 'rgba(20,20,20,0.7)' : 'rgba(255,255,255,0.7)')
     : (theme === 'dark' ? 'rgba(20,20,20,0.95)' : 'rgba(255,255,255,0.95)');
@@ -134,16 +135,9 @@ function Navbar() {
       >
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={theme === 'dark' ? '#fff' : '#222'} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <div
-        className="navbar-links"
-        style={{
-          display: 'flex',
-          gap: 24,
-          alignItems: 'center',
-        }}
-      >
+      <div className="navbar-links" style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
         <Link href="/"><span style={{ textDecoration: "none", color: theme === 'dark' ? '#fff' : '#222', fontWeight: 500 }}>Home</span></Link>
-        <Link href="#fh5co-about"><span style={{ textDecoration: "none", color: theme === 'dark' ? '#fff' : '#222', fontWeight: 500 }}>About</span></Link>
+        <Link href="/about"><span style={{ textDecoration: "none", color: theme === 'dark' ? '#fff' : '#222', fontWeight: 500 }}>About</span></Link>
         <Link href="/education"><span style={{ textDecoration: "none", color: theme === 'dark' ? '#fff' : '#222', fontWeight: 500 }}>Education</span></Link>
         <Link href="/projects"><span style={{ textDecoration: "none", color: theme === 'dark' ? '#fff' : '#222', fontWeight: 500 }}>Projects</span></Link>
         <Link href="/contact"><span style={{ textDecoration: "none", color: theme === 'dark' ? '#fff' : '#222', fontWeight: 500 }}>Contact</span></Link>
@@ -168,7 +162,7 @@ function Navbar() {
       >
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
           <Link href="/"><span style={{ padding: '12px 24px', width: '100%', textAlign: 'right', color: theme === 'dark' ? '#fff' : '#222', textDecoration: 'none', fontWeight: 500 }} onClick={handleNavClick}>Home</span></Link>
-          <Link href="#fh5co-about"><span style={{ padding: '12px 24px', width: '100%', textAlign: 'right', color: theme === 'dark' ? '#fff' : '#222', textDecoration: 'none', fontWeight: 500 }} onClick={handleNavClick}>About</span></Link>
+          <Link href="/about"><span style={{ padding: '12px 24px', width: '100%', textAlign: 'right', color: theme === 'dark' ? '#fff' : '#222', textDecoration: 'none', fontWeight: 500 }} onClick={handleNavClick}>About</span></Link>
           <Link href="/education"><span style={{ padding: '12px 24px', width: '100%', textAlign: 'right', color: theme === 'dark' ? '#fff' : '#222', textDecoration: 'none', fontWeight: 500 }} onClick={handleNavClick}>Education</span></Link>
           <Link href="/projects"><span style={{ padding: '12px 24px', width: '100%', textAlign: 'right', color: theme === 'dark' ? '#fff' : '#222', textDecoration: 'none', fontWeight: 500 }} onClick={handleNavClick}>Projects</span></Link>
           <Link href="/contact"><span style={{ padding: '12px 24px', width: '100%', textAlign: 'right', color: theme === 'dark' ? '#fff' : '#222', textDecoration: 'none', fontWeight: 500 }} onClick={handleNavClick}>Contact</span></Link>
@@ -179,17 +173,11 @@ function Navbar() {
       </div>
       <style jsx>{`
         @media (max-width: 768px) {
-          .navbar-links {
-            display: none !important;
-          }
-          .navbar-burger {
-            display: block !important;
-          }
+          .navbar-links { display: none !important; }
+          .navbar-burger { display: block !important; }
         }
         @media (min-width: 769px) {
-          .navbar-mobile {
-            display: none !important;
-          }
+          .navbar-mobile { display: none !important; }
         }
       `}</style>
     </nav>
@@ -216,25 +204,14 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      {/* ThemeToggle removed from here, now in Navbar */}
-
-      {/* Google Fonts */}
       <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" />
-
-      {/* CSS Files */}
       <link rel="stylesheet" href="/css/animate.css" />
       <link rel="stylesheet" href="/css/icomoon.css" />
       <link rel="stylesheet" href="/css/bootstrap.css" />
       <link rel="stylesheet" href="/css/style.css" />
-
-      {/* Modernizr JS */}
       <Script src="/js/modernizr-2.6.2.min.js" strategy="beforeInteractive" />
-      {/*[if lt IE 9]*/}
-      {/* <Script id="respond-js" src="/js/respond.min.js" strategy="beforeInteractive" /> */}
-      {/*<![endif]*/}
 
-      {/* Main HTML Content */}
       <div className="fh5co-loader"></div>
       <div id="page">
         <header id="fh5co-header" className="fh5co-cover js-fullheight" role="banner" style={{ backgroundImage: 'url(/images/cover_bg_3.jpg)' }} data-stellar-background-ratio="0.5">
@@ -247,32 +224,13 @@ export default function Home() {
                     <div className="profile-thumb" style={{ background: 'url(/images/user-3.jpg)' }}></div>
                     <h1><span>Adreeraj Das</span></h1>
                     <h3 style={{ letterSpacing: '0.05em', marginBottom: 12 }}><span>Full Stack Developer</span></h3>
-                    <ul className="fh5co-social-icons" style={{ gap: 12, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 8 }}>
-                      <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
-                        <a href="https://www.instagram.com/addreeraj/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                          <i className="icon-instagram" style={{ fontSize: 28, color: '#fff' }}></i>
-                        </a>
-                      </li>
-                      <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
-                        <a href="https://github.com/adreerajdas" aria-label="GitHub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', color: '#fff' }}>
-                            <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.48 2.87 8.28 6.84 9.63.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" fill="currentColor" />
-                          </svg>
-                        </a>
-                      </li>
-                      <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
-                        <a href="https://www.linkedin.com/in/adreerajdas" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                          <i className="icon-linkedin2" style={{ fontSize: 28, color: '#fff' }}></i>
-                        </a>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </header>
-        {/* About Me section - white in light mode */}
+
         <div id="fh5co-about" className="animate-box" style={{ background: theme === 'dark' ? '#181818' : '#fff', paddingTop: 32, paddingBottom: 24 }}>
           <div className="container">
             <div className="row">
@@ -281,23 +239,12 @@ export default function Home() {
               </div>
             </div>
             <div className="row about-row-responsive">
-              <div
-                className="about-info-col"
-                style={{ wordBreak: 'break-word', marginLeft: '-18px', maxWidth: 260 }}
-              >
+              <div style={{ wordBreak: 'break-word', marginLeft: '-18px', maxWidth: 260 }}>
                 <ul className="info">
                   <li><span className="first-block">Name:</span><span className="second-block">Adreeraj Das</span></li>
                   <li><span className="first-block">Email:</span><span className="second-block" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', display: 'inline-block', maxWidth: '170px' }} title="dasadreeraj@gmail.com">dasadreeraj@gmail.com</span></li>
                   <li><span className="first-block">Website:</span><span className="second-block">
-                    <a
-                      href="https://adreerajdas.netlify.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        color: theme === 'dark' ? '#fff' : '#222',
-                        textDecoration: 'underline'
-                      }}
-                    >
+                    <a href="https://adreerajdas.netlify.app/" target="_blank" rel="noopener noreferrer" style={{ color: theme === 'dark' ? '#fff' : '#222', textDecoration: 'underline' }}>
                       adreerajdas
                     </a>
                   </span></li>
@@ -306,96 +253,34 @@ export default function Home() {
               </div>
               <div className="about-text-col">
                 <h2>Hello There!</h2>
-                <p>I’m a Full Stack Developer with a passion for building responsive websites and applications that offer seamless functionality and user experience. I specialize in UI/UX design and professional video editing, combining creativity with technical skills to craft meaningful digital solutions.</p>
+                <p>I'm a Full Stack Developer with a passion for building responsive websites and applications that offer seamless functionality and user experience. I specialize in UI/UX design and professional video editing, combining creativity with technical skills to craft meaningful digital solutions.</p>
                 <p>Currently pursuing a Diploma in Computer Science & Technology at Technique Polytechnic Institute, I maintain a GPA of 8.3 and consistently explore new technologies through hands-on projects.</p>
                 <p>I have also worked on IoT-based projects, focusing on practical, real-world applications in areas like safety and automation.</p>
                 <p>As the Design Lead and Admin of InnovateX, a tech community of 500+ developers, I lead creative initiatives and mentor aspiring technologists.</p>
-                <ul className="fh5co-social-icons">
-                  <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
-                    <a href="https://www.instagram.com/addreeraj/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                      <i className="icon-instagram" style={{ fontSize: 28, color: '#fff' }}></i>
-                    </a>
-                  </li>
-                  <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
-                    <a href="https://github.com/adreerajdas" aria-label="GitHub" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle', color: '#fff' }}>
-                        <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.48 2.87 8.28 6.84 9.63.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" fill="currentColor" />
-                      </svg>
-                    </a>
-                  </li>
-                  <li style={{ width: 48, height: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#344050', borderRadius: 6 }}>
-                    <a href="https://www.linkedin.com/in/adreerajdas" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
-                      <i className="icon-linkedin2" style={{ fontSize: 28, color: '#fff' }}></i>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
             <style jsx>{`
-              .about-row-responsive {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 24px;
-              }
-              .about-info-col {
-                min-width: 220px;
-                max-width: 260px;
-                flex: 1 1 220px;
-                background: none;
-              }
-              .about-text-col {
-                flex: 2 1 320px;
-                min-width: 0;
-                background: none;
-              }
-              .fh5co-social-icons {
-                margin-top: 8px;
-                gap: 12px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              }
-              .fh5co-cover .fh5co-social-icons {
-                margin-top: 20px;
-              }
+              .about-row-responsive { display: flex; flex-wrap: wrap; gap: 24px; }
+              .about-info-col { min-width: 220px; max-width: 260px; flex: 1 1 220px; background: none; }
+              .about-text-col { flex: 2 1 320px; min-width: 0; background: none; }
               @media (max-width: 900px) {
-                .about-row-responsive {
-                  flex-direction: column;
-                  align-items: center;
-                }
-                .about-info-col, .about-text-col {
-                  max-width: 100% !important;
-                  width: 100% !important;
-                  margin-left: 0 !important;
-                }
-                .about-info-col {
-                  margin-bottom: 24px;
-                }
-                .about-text-col {
-                  text-align: center;
-                }
-                .fh5co-social-icons {
-                  justify-content: center;
-                }
+                .about-row-responsive { flex-direction: column; align-items: center; }
+                .about-info-col, .about-text-col { max-width: 100% !important; width: 100% !important; margin-left: 0 !important; }
+                .about-info-col { margin-bottom: 24px; }
+                .about-text-col { text-align: center; }
               }
               @media (max-width: 600px) {
-                .about-row-responsive {
-                  padding: 0 8px;
-                }
-                .about-text-col h2 {
-                  font-size: 1.4rem;
-                }
+                .about-row-responsive { padding: 0 8px; }
+                .about-text-col h2 { font-size: 1.4rem; }
               }
             `}</style>
           </div>
         </div>
-        {/* Top Projects section - purple in light mode */}
+
         <div id="fh5co-resume" className="fh5co-bg-color" style={{ background: theme === 'dark' ? '#222' : '#a51cff', paddingTop: 0 }}>
           <div className="container">
             <div className="row animate-box">
-              <div className="col-md-8 col-md-offset-2 text-center fh5co-heading" style={{ marginBottom: 0 }}>
-                {/* <h2>My Resume</h2> removed as requested */}
-              </div>
+              <div className="col-md-8 col-md-offset-2 text-center fh5co-heading" style={{ marginBottom: 0 }}></div>
             </div>
             <div className="row">
               <div className="col-md-12 col-md-offset-0">
@@ -493,7 +378,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* My Services section - white in light mode */}
+
         <div id="fh5co-features" className="animate-box" style={{ background: theme === 'dark' ? '#181818' : '#fff', paddingTop: 24, paddingBottom: 24 }}>
           <div className="container">
             <div className="services-padding">
@@ -540,12 +425,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* Skills section - purple in light mode */}
+
         <div id="fh5co-skills" className="animate-box" style={{ background: theme === 'dark' ? '#222' : '#a51cff', paddingTop: 24, paddingBottom: 24 }}>
           <div className="container">
             <div className="row">
               <div className="col-md-8 col-md-offset-2 text-center fh5co-heading" style={{ marginBottom: 12 }}>
-                <h2 style={{ color: theme === 'dark' ? '#fff' : '#fff' }}>Skills</h2>
+                <h2 style={{ color: '#fff' }}>Skills</h2>
               </div>
             </div>
             <div className="row">
@@ -592,57 +477,221 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* Hire Me section - white in light mode */}
-        <div id="fh5co-started" className="fh5co-bg-dark" style={{ background: theme === 'dark' ? '#181818' : '#fff', paddingTop: 24, paddingBottom: 24 }}>
-          <div className="overlay"></div>
-          <div className="container">
+
+        <div id="fh5co-started" className="fh5co-bg-dark" style={{ 
+          background: theme === 'dark' ? '#181818' : '#fff', 
+          padding: '80px 0',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: theme === 'dark' 
+              ? 'radial-gradient(circle at center, rgba(156, 156, 156, 0.1)'
+              : 'radial-gradient(circle at center, rgba(165, 28, 255, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%)',
+            zIndex: 0
+          }}></div>
+          
+          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div className="row animate-box">
-              <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2
-                  style={{
-                    color: theme === 'dark' ? '#a51cff' : '#222',
-                    fontFamily: 'Space Mono, monospace',
-                    fontWeight: 400,
-                    fontSize: '2.5rem',
-                    letterSpacing: '2px',
-                    textAlign: 'center',
-                    marginBottom: '32px',
-                    marginTop: '0',
-                    lineHeight: 1.2
-                  }}
-                >
-                  Hire Me! OR Work With Me
+              <div className="col-md-8 col-md-offset-2 text-center">
+                <h2 style={{ 
+                  color: theme === 'dark' ? '#fff' : '#222',
+                  fontFamily: 'Space Mono, monospace',
+                  fontWeight: 700,
+                  fontSize: '3.5rem',
+                  letterSpacing: '1px',
+                  marginBottom: '30px',
+                  textTransform: 'uppercase',
+                  position: 'relative',
+                  display: 'inline-block'
+                }}>
+                  <span style={{
+                    position: 'absolute',
+                    bottom: '-10px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '80px',
+                    height: '4px',
+                    background: theme === 'dark' ? '#9900ff' : '#a51cff',
+                    borderRadius: '2px'
+                  }}></span>
+                  Let's Collaborate
                 </h2>
-                <p style={{ color: theme === 'dark' ? '#fff' : '#222' }}>Versatile developer skilled in HTML, CSS, JavaScript, PHP, React.js, and C++, complemented by expertise in Adobe Photoshop and Premiere Pro, ready to bring creative and technical excellence to your projects.</p>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-                  <a href="/contact" className="btn btn-default btn-lg">Contact Me</a>
-                  <a href="/resume/adreeraj-cv.pdf" className="btn btn-default btn-lg" download>Download CV</a>
+                
+                <p style={{ 
+                  color: theme === 'dark' ? '#ddd' : '#555',
+                  fontSize: '1.5rem',
+                  lineHeight: '1.6',
+                  marginBottom: '40px',
+                  maxWidth: '700px',
+                  marginLeft: 'auto',
+                  marginRight: 'auto'
+                }}>
+                  I'm currently available for freelance work and full-time opportunities. 
+                  Whether you have a project in mind or just want to chat about potential 
+                  collaborations, I'd love to hear from you.
+                </p>
+                
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'center', 
+                  gap: '20px', 
+                  flexWrap: 'wrap',
+                  marginTop: '40px'
+                }}>
+                  <Link href="/contact" passHref>
+                    <button style={{
+                      padding: '16px 40px',
+                      fontSize: '1.5rem',
+                      fontWeight: 600,
+                      background: theme === 'dark' ? '#9900ff' : '#a51cff',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '50px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 20px rgba(153, 0, 255, 0.3)',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.transform = 'translateY(-3px)';
+                      e.currentTarget.style.boxShadow = '0 6px 25px rgba(153, 0, 255, 0.4)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(153, 0, 255, 0.3)';
+                    }}>
+                      <span style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        background: 'rgba(255,255,255,0.1)',
+                        opacity: 0,
+                        transition: 'opacity 0.3s ease'
+                      }}></span>
+                      Contact Me
+                    </button>
+                  </Link>
+                  
+                  <a href="/resume/adreeraj-cv.pdf" download style={{
+                    padding: '16px 40px',
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                    background: 'transparent',
+                    color: theme === 'dark' ? '#fff' : '#222',
+                    border: `2px solid ${theme === 'dark' ? '#9900ff' : '#a51cff'}`,
+                    borderRadius: '50px',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.background = theme === 'dark' ? 'rgba(153, 0, 255, 0.1)' : 'rgba(165, 28, 255, 0.1)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}>
+                    <span style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      background: 'rgba(255,255,255,0.1)',
+                      opacity: 0,
+                      transition: 'opacity 0.3s ease'
+                    }}></span>
+                    Download Resume
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* Thank You section - purple in light mode */}
-        <div id="fh5co-footer" style={{ background: theme === 'dark' ? '#222' : '#a51cff', paddingTop: 16, paddingBottom: 8 }}>
+
+        <div id="fh5co-footer" style={{ 
+          background: theme === 'dark' ? '#222' : '#a51cff', 
+          padding: '40px 0 20px',
+          textAlign: 'center'
+        }}>
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <p style={{ marginBottom: 0, color: '#fff' }}>
-                  &copy; THANK YOU 2024. All Rights Reserved. <br />
-                  Designed by ADREE <a href="https://www.instagram.com/addreeraj/" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline' }}>FOLLOW</a>
-                  <br />
-                  <span style={{ fontSize: '1.80rem', color: '#fff', fontWeight: 500 }}>Version 1.2 &nbsp;|&nbsp; Last updated: June 25, 2025</span>
+                <p style={{ 
+                  marginBottom: '10px', 
+                  color: '#fff',
+                  fontSize: '1.2rem'
+                }}>
+                  &copy; {new Date().getFullYear()} Adreeraj Das. All Rights Reserved.
+                </p>
+                <p style={{ 
+                  marginBottom: '20px', 
+                  color: 'rgba(255,255,255,0.7)',
+                  fontSize: '1.2rem'
+                }}>
+                  Designed and Developed by Adreeraj
                 </p>
               </div>
             </div>
           </div>
         </div>
+
         <div className="gototop js-top">
-          <a href="#" className="js-gotop"><i className="icon-arrow-up22"></i></a>
+          <a href="#" className="js-gotop" style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            width: '50px',
+            height: '50px',
+            background: theme === 'dark' ? '#9900ff' : '#a51cff',
+            color: '#fff',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textDecoration: 'none',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+            transition: 'all 0.3s ease',
+            zIndex: 1000
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = 'translateY(-5px)';
+            e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+          }}>
+            <svg 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="#fff" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              style={{ display: 'block', margin: '0 auto' }}
+            >
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </a>
         </div>
       </div>
 
-      {/* JS Files at the end of body */}
       <Script src="/js/jquery.min.js" strategy="afterInteractive" />
       <Script src="/js/jquery.easing.1.3.js" strategy="afterInteractive" />
       <Script src="/js/bootstrap.min.js" strategy="afterInteractive" />

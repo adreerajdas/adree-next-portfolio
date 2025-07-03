@@ -1,99 +1,310 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
+// Theme toggle button
 function ThemeToggle() {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.setAttribute("data-theme", savedTheme);
+    const saved = localStorage.getItem("theme");
+    if (saved) {
+      setTheme(saved);
+      document.body.classList.remove("light", "dark");
+      document.body.classList.add(saved);
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initial = prefersDark ? "dark" : "light";
+      setTheme(initial);
+      document.body.classList.add(initial);
     }
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
+  useEffect(() => {
+    document.body.classList.remove("light", "dark");
+    document.body.classList.add(theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
-    <button onClick={toggleTheme}>
-      {theme === "light" ? "Switch to Dark Theme" : "Switch to Light Theme"}
+    <button
+      aria-label="Toggle Theme"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      style={{
+        background: theme === "dark" ? "#222" : "#fff",
+        border: "2px solid #222",
+        borderRadius: "50%",
+        cursor: "pointer",
+        padding: 0,
+        width: 36,
+        height: 36,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        boxShadow: theme === "dark"
+          ? "0 2px 8px rgba(0,0,0,0.32)"
+          : "0 2px 8px rgba(0,0,0,0.08)",
+        transition: "all 0.2s"
+      }}
+    >
+      {theme === "dark" ? (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFD600" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      ) : (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      )}
     </button>
   );
 }
 
+// Navbar
 function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+
+    const updateTheme = () => {
+      const t = document.body.classList.contains("dark") ? "dark" : "light";
+      setTheme(t);
+    };
+    updateTheme();
+
+    window.addEventListener("storage", updateTheme);
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("storage", updateTheme);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <nav>
-      <div className="container">
-        <div className="navbar-header">
-          <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </button>
-          <Link className="navbar-brand" href="/">My Portfolio</Link>
-        </div>
-        <div className="collapse navbar-collapse" id="navbar-collapse">
-          <ul className="nav navbar-nav">
-            <li className="active"><Link href="/">Home</Link></li>
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/projects">Projects</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
-          </ul>
-          <ThemeToggle />
-        </div>
+    <nav
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        background: theme === "dark" ? "#181818" : "#f8f8f8",
+        backdropFilter: "blur(12px)",
+        borderBottom: scrolled ? (theme === "dark" ? "1px solid #333" : "1px solid #ccc") : "none",
+        zIndex: 1200,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        height: "56px",
+        minHeight: "56px",
+        padding: "0 2rem",
+        fontFamily: "Space Mono, Kaushan Script, monospace, cursive",
+        transition: "all 0.3s ease"
+      }}
+    >
+      <Link href="/">
+        <span style={{
+          fontWeight: 700,
+          fontSize: 20,
+          letterSpacing: 1,
+          color: theme === "dark" ? "#fff" : "#9900ff",
+          cursor: "pointer"
+        }}>
+          Adreeraj Das
+        </span>
+      </Link>
+      <div className="navbar-links" style={{ display: "flex", gap: 20, alignItems: "center" }}>
+        <Link href="/">
+          <span style={{ fontSize: 15, fontWeight: 500, color: theme === "dark" ? "#eee" : "#111", transition: "color 0.2s", cursor: "pointer" }}>Home</span>
+        </Link>
+        <Link href="/about">
+          <span style={{ fontSize: 15, fontWeight: 500, color: theme === "dark" ? "#eee" : "#111", transition: "color 0.2s", cursor: "pointer" }}>About</span>
+        </Link>
+        <Link href="/education">
+          <span style={{ fontSize: 15, fontWeight: 500, color: theme === "dark" ? "#eee" : "#111", transition: "color 0.2s", cursor: "pointer" }}>Education</span>
+        </Link>
+        <Link href="/projects">
+          <span style={{ fontSize: 15, fontWeight: 500, color: theme === "dark" ? "#eee" : "#111", transition: "color 0.2s", cursor: "pointer" }}>Projects</span>
+        </Link>
+        <Link href="/contact">
+          <span style={{ fontSize: 15, fontWeight: 500, color: theme === "dark" ? "#eee" : "#111", transition: "color 0.2s", cursor: "pointer" }}>Contact</span>
+        </Link>
+        <ThemeToggle />
       </div>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .navbar-links {
+            display: none !important;
+          }
+        }
+      `}</style>
     </nav>
   );
 }
 
 export default function AboutPage() {
   return (
-    <main>
+    <div className="about-page">
       <Navbar />
-      <link href="https://fonts.googleapis.com/css?family=Space+Mono&display=optional" rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css?family=Kaushan+Script&display=optional" rel="stylesheet" />
-      {/* Remove manual CSS includes for Next.js best practices */}
-      {/* <link rel="stylesheet" href="/css/animate.css" /> */}
-      {/* <link rel="stylesheet" href="/css/icomoon.css" /> */}
-      {/* <link rel="stylesheet" href="/css/bootstrap.css" /> */}
-      {/* <link rel="stylesheet" href="/css/style.css" /> */}
-      <div id="fh5co-about" className="animate-box">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 col-md-offset-2 text-center fh5co-heading">
-              <h2>About Me</h2>
+      <main className="content">
+        <h1>About Me</h1>
+
+        <div className="about-grid">
+          <div className="info-section">
+            <div className="info-block">
+              <h3>Personal Info</h3>
+              <p><strong>Name:</strong> Adreeraj Das</p>
+              <p><strong>Email:</strong> dasadreeraj@gmail.com</p>
+              <p><strong>Website:</strong> adreerajdas</p>
+              <p><strong>Address:</strong> West Bengal, KOLKATA</p>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-4">
-              <ul className="info">
-                <li><span className="first-block">Name:</span><span className="second-block">Adreeraj Das</span></li>
-                <li><span className="first-block">Email:</span><span className="second-block">dasadreeraJ@gmail.com</span></li>
-                <li><span className="first-block">Website:</span><span className="second-block">www.adreehtml.com</span></li>
-                <li><span className="first-block">Address:</span><span className="second-block">West Bengal, KOLKATA</span></li>
-              </ul>
-            </div>
-            <div className="col-md-8">
-              <h2>Hello There!</h2>
-              <p>I&apos;m Adree, a dedicated web developer with a passion for creating dynamic and user-friendly websites. I specialize in both frontend and backend development</p>
-              <p>Ensuring a seamless and engaging experience for users. With proficiency in HTML, CSS, JavaScript, and various backend technologies, I strive to bring innovative ideas to life through code. Whether it&apos;s designing visually appealing interfaces or developing robust server-side applications, I am committed to delivering high-quality solutions that meet the unique needs of each project. Let&apos;s connect and build something amazing together!</p>
-              <ul className="fh5co-social-icons">
-                <li><a href="https://www.instagram.com/addreeraj/"><i className="icon-instagram"></i></a></li>
-                <li><a href="https://www.facebook.com/share/gR4Nx3AEhzXd9sHt/?mibextid=qi2Omg"><i className="icon-facebook3"></i></a></li>
-                <li><a href="https://www.linkedin.com/in/adreerajdas"><i className="icon-linkedin2"></i></a></li>
-              </ul>
+
+          <div className="bio-section">
+            <h2>Hello There!</h2>
+            <p>I'm a Full Stack Developer with a passion for building responsive websites and applications that offer seamless functionality and user experience. I specialize in UI/UX design and professional video editing, combining creativity with technical skills to craft meaningful digital solutions.</p>
+            
+            <p>Currently pursuing a Diploma in Computer Science & Technology at Technique Polytechnic Institute, I maintain a GPA of 8.3 and consistently explore new technologies through hands-on projects.</p>
+            
+            <p>I have also worked on IoT-based projects, focusing on practical, real-world applications in areas like safety and automation.</p>
+            
+            <p>As the Design Lead and Admin of InnovateX, a tech community of 500+ developers, I lead creative initiatives and mentor aspiring technologists.</p>
+
+            <div className="social-links">
+              <Link href="https://www.instagram.com/addreeraj/" target="_blank">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </Link>
+              <Link href="https://github.com/adreerajdas" target="_blank">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.48 2.87 8.28 6.84 9.63.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" fill="currentColor" />
+                </svg>
+              </Link>
+              <Link href="https://www.linkedin.com/in/adreerajdas" target="_blank">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+
+      {/* Global Styles */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+        body {
+          transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark {
+          background: #000;
+          color: white;
+        }
+
+        body.light {
+          background: #fff;
+          color: #111;
+        }
+      `}</style>
+
+      <style jsx>{`
+        .about-page {
+          font-family: 'Space Mono', monospace;
+          padding-top: 100px;
+          padding-left: 24px;
+          padding-right: 24px;
+          min-height: 100vh;
+        }
+
+        .content {
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+          text-align: center;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        h3 {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: 2rem;
+        }
+
+        .info-section, .bio-section {
+          padding: 20px;
+          border-radius: 12px;
+          transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark .info-section,
+        body.dark .bio-section {
+          background-color: #1a1a1a;
+          box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+        }
+
+        body.light .info-section,
+        body.light .bio-section {
+          background-color: #f9f9f9;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-block p {
+          margin: 8px 0;
+        }
+
+        .bio-section p {
+          margin-bottom: 1rem;
+          line-height: 1.6;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 16px;
+          margin-top: 24px;
+        }
+
+        .social-links a {
+          color: inherit;
+          transition: transform 0.2s;
+        }
+
+        .social-links a:hover {
+          transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+          .about-page {
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+
+          .about-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+    </div>
   );
 }
