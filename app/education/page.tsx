@@ -223,7 +223,7 @@ function Navbar() {
 }
 
 export default function EducationPage() {
-  const [theme, setTheme] = useState('light');
+  const [, setTheme] = useState('light');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
