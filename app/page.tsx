@@ -224,6 +224,49 @@ export default function Home() {
                     <div className="profile-thumb" style={{ background: 'url(/images/user-3.jpg)' }}></div>
                     <h1><span>Adreeraj Das</span></h1>
                     <h3 style={{ letterSpacing: '0.05em', marginBottom: 12 }}><span>Full Stack Developer</span></h3>
+                    
+                    {/* Added social icons here */}
+                    <ul className="fh5co-social-icons" style={{ 
+                      marginTop: 20, 
+                      padding: 0, 
+                      listStyle: 'none', 
+                      display: 'flex', 
+                      justifyContent: 'center', 
+                      gap: '0.01em' 
+                    }}>
+                      <li>
+                        <a 
+                          href="https://www.instagram.com/addreeraj/" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          style={{ color: '#fff', fontSize: '24px' }}
+                        >
+                          <i className="icon-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a 
+                          href="https://github.com/adreerajdas" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          style={{ color: '#fff' }}
+                        >
+                          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.867 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.153-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1 .07 1.532 1.032 1.532 1.032.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.339-2.221-.253-4.555-1.112-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.337 4.695-4.566 4.944.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.749 0 .269.18.58.688.482C19.135 20.163 22 16.417 22 12c0-5.523-4.477-10-10-10Z" fill="currentColor"/>
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a 
+                          href="https://www.linkedin.com/in/adreerajdas" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          style={{ color: '#fff', fontSize: '24px' }}
+                        >
+                          <i className="icon-linkedin2"></i>
+                        </a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -634,7 +677,7 @@ export default function Home() {
                   color: '#fff',
                   fontSize: '1.2rem'
                 }}>
-                  &copy; {new Date().getFullYear()} Adreeraj Das. All Rights Reserved.
+                  &copy; {new Date().getFullYear()} Adreeraj Das. All Rights Reserved. Last Updated 4/07/2025  
                 </p>
                 <p style={{ 
                   marginBottom: '20px', 
